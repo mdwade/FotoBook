@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+	 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	 
+    <persistence-unit name="fotobook_pu" transaction-type="JTA">
+    	<!-- transaction-type = (RESOURCE_LOCAL | JTA) -->
+    	
+    	<!-- Définit le nom de la source de données préalablement ajouté au serveur -->
+        <jta-data-source>jdbc/fotoBook</jta-data-source>
+        <!-- Définit les classes d'entité gérées par ce P.U
+        	On peut avoir plusieurs <class> successifs. A la place, on peut utiliser (sous JTA) :
+        	<exclude-unlisted-classes>false</exclude-unlisted-classes>
+        -->
+        <class>model.User</class>
+        <class>model.Album</class>
+        <class>model.Image</class>
+        <properties>
+            <!-- Pour la définition du niveau de Logging. Peut prendre les valeurs :
+                OFF, SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST, ALL
+            -->
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            
+            <!-- Pour la génération des tables à partir des entités
+                "create-tables" ==> Crée les tables si elles n'existent pas
+                "drop-and-create-tables" ==> Supprime puis crée les tables
+            -->
+            <!-- <property name="eclipselink.ddl-generation" value="create-tables"/> -->
+        </properties>
+    </persistence-unit>   
+</persistence>

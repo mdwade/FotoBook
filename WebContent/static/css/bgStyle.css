@@ -1,0 +1,89 @@
+body, html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+h1 {
+	font-size: 70px;
+	color: white;
+}
+
+.head h3 {
+	color: white;
+}
+
+.banner-text {
+	position: absolute; 
+	top: 30%;
+	left: 40%;
+	tranform: translate(-50%, -50%);
+	z-index: 5;
+	text-align: center;  
+}
+
+a {
+	color: white !important;
+	text-decoration: none;
+}
+
+input[type="email"], input[type="password"] {
+	border-radius: 0 16px 0 16px;
+	
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+	border-radius: 16px 0 16px 0;
+	padding: 15px !important;
+	border-color: orange !important;
+	transition: 1s;
+}
+
+.erreur {
+	color: red;
+	font-size: 14px;
+}
+
+#videoBG {
+	position: fixed;
+	top: 0px;
+   left: 0px;
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   z-index: -1000;
+   overflow: hidden;
+   -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  -o-filter: blur(20px);
+  -ms-filter: blur(20px);
+  filter: blur(20px);
+}
+
+@media(min-aspect-ration: 16/9) {
+	#videoBG {
+		width: 100%;
+		height: auto;
+	}
+}
+
+@media(max-aspect-ration: 16/9) {
+	#videoBG {
+		width: auto;
+		height: 100%;
+	}
+}
+
+@media(max-width: 767px) {
+	#videoBG {
+		display: none;
+	}
+	
+	body{
+		background-image: url('../img/poster1.png');
+		background-size: cover no repeat;
+		width: 100%; 
+		height: auto;
+	}
+}
