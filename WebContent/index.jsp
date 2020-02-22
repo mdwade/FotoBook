@@ -26,8 +26,7 @@
 				<form action="/FotoBook/sign_in" method="post" class="w3-form">
 					<div class="w3-margin w3-padding">
 						<input type="email" 
-							   name="email" 
-							   value="" 
+							   name="email"  
 							   placeholder="Adresse email..."
 							   class="w3-input w3-round-large w3-border w3-padding" 
 							   value= "${email}" required>
@@ -50,7 +49,7 @@
 			</div>
 		</div>
 		<div class="w3-margin w3-text-white">
-			<a href="#" class="">Inscription</a> | <a href="#" class="">Visiter le site</a>
+			<a href="#" class="">Inscription</a> | <a href="/FotoBook/home.jsp" class="">Visiter le site</a>
 		</div>
 	</div>
 	<div class="w3-footer">

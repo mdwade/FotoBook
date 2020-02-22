@@ -47,18 +47,18 @@ input[type="email"]:focus, input[type="password"]:focus {
 #videoBG {
 	position: fixed;
 	top: 0px;
-   left: 0px;
-   min-width: 100%;
-   min-height: 100%;
-   width: auto;
-   height: auto;
-   z-index: -1000;
-   overflow: hidden;
-   -webkit-filter: blur(20px);
-  -moz-filter: blur(20px);
-  -o-filter: blur(20px);
-  -ms-filter: blur(20px);
-  filter: blur(20px);
+    left: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1000;
+    overflow: hidden;
+    -webkit-filter: blur(20px);
+   -moz-filter: blur(20px);
+   -o-filter: blur(20px);
+   -ms-filter: blur(20px);
+   filter: blur(20px);
 }
 
 @media(min-aspect-ration: 16/9) {
