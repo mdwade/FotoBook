@@ -54,7 +54,7 @@ public class User implements Serializable {
 
 	
 	public User(int id, String address, int age, String email, String firstName, String lastName, String password,
-			String phoneNumber, Date registerDate, String userType, List<Album> albums) {
+			String phoneNumber, String userType) {
 		
 		this.id = id;
 		this.address = address;
@@ -64,9 +64,8 @@ public class User implements Serializable {
 		this.lastName = lastName;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
-		this.registerDate = registerDate;
-		this.userType = userType;
-		this.albums = albums;
+		this.registerDate = new Date(System.currentTimeMillis());
+		this.userType = userType;		
 	}
 
 

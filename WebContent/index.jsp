@@ -5,15 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>FotoBook</title>
-<link rel="stylesheet" type="text/css" href="static/css/bgStyle.css">
-<link rel="stylesheet" type="text/css" href="static/css/mycss.css">
+<link rel="stylesheet" type="text/css" href="/FotoBook/static/css/bgStyle.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/FotoBook/static/css/mycss.css">
 </head>
 <body>
 	<video id="videoBG" src="static/img/video.mp4" autoplay muted loop></video>
 	<div class="w3-row w3-top w3-container w3-margin w3-padding">
 		<div class="w3-col l6 head">
 			<h3>
-				<img src="static/img/music1.png" width="40">OTOBOOK
+				<img src="static/img/music1.png" width="30">OTOBOOK
 			</h3>
 		</div>
 	</div>
@@ -24,20 +25,30 @@
 				<h3>Connectez-vous</h3>
 				<span class="erreur"><i>${errors['signInError']}</i></span>
 				<form action="/FotoBook/sign_in" method="post" class="w3-form">
-					<div class="w3-margin w3-padding">
-						<input type="email" 
+					<div class="w3-margin w3-padding w3-row">
+						<div class="w3-col l2" style="padding-top: 10px">
+							<i class="fa fa-envelope w3-large"></i>
+						</div>
+						<div class="w3-col l10">
+							<input type="email" 
 							   name="email"  
 							   placeholder="Adresse email..."
 							   class="w3-input w3-round-large w3-border w3-padding" 
 							   value= "${email}" required>
+						</div>
 					</div>
 					
-					<div class="w3-margin w3-padding">
-						<input type="password" 
+					<div class="w3-margin w3-padding w3-row">
+						<div class="w3-col l2" style="padding-top: 10px">
+							<i class="fa fa-lock w3-large"></i>
+						</div>
+						<div class="w3-col l10">
+							<input type="password" 
 							   name="password" 
 							   value="" 
 							   placeholder="Mot de passe..."
 							   class="w3-input w3-round-large w3-border w3-padding" required>
+						</div>						
 					</div>
 					
 					<div class="w3-margin w3-padding">
@@ -49,9 +60,12 @@
 			</div>
 		</div>
 		<div class="w3-margin w3-text-white">
-			<a href="#" class="">Inscription</a> | <a href="/FotoBook/home.jsp" class="">Visiter le site</a>
+			<a href="/FotoBook/sign_up" class="">Inscription</a> 
+			| 
+			<a href="/FotoBook/home.jsp" class="">Visiter le site</a>
 		</div>
 	</div>
+	
 	<div class="w3-footer">
 		
 	</div>

@@ -1,0 +1,89 @@
+body {
+	background-image: linear-gradient(to right, #ff5722, #ff9800);
+	padding: 10%;
+}
+
+.register-left {
+	text-align: center;
+	color: #fff;
+	padding: 30px;
+}
+
+.register-left p {
+	padding: 20px 20px 0;
+}
+
+.register-left .w3-btn {
+	width: 180px;
+	font-weight: 600;
+	margin-top: 20px;
+	padding: 13px
+}
+
+.register-left img {
+	margin-top: 100px;
+	width: 80px	;
+	animation: mover 1s infinite alternate;
+}
+
+.register-right {
+	border: none;
+	background: #f8f8f8;
+	border-top-left-radius: 10% 50%;
+	border-bottom-left-radius: 10% 50%;
+	padding: 30px !important;
+}
+
+.register-right h2 {
+	text-align: center;
+	margin-bottom: 20px;
+	color: #555;
+}
+
+.register-form {
+	padding: 15px
+}
+
+.register-form .registerBtn {
+	width: 100px;
+	color: white;
+	background: #ff9800;
+	font-weight: 600;
+	margin-top: 10px;
+	padding: 10px	
+}
+
+input[type="text"], input[type="email"], input[type="number"],
+	textarea {
+	border-radius: 0 16px 0 16px;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus,
+	textarea:focus {
+	border-radius: 16px 0 16px 0;
+	transition: 0.7s;
+	border-color: #ff9800 !important;
+	padding-left: 15px !important;
+}
+
+.fa {
+	margin-top: 10px
+}
+
+.errorMsg {
+	color: #ff5722;
+	font-style: italic;
+	font-size: 13px;
+	margin-left: 20px
+}
+
+@keyframes mover {
+	
+	0% {transform: translateY(0);}
+	
+	100%{transform: translateY(-20px);}
+}
+
+
+
+

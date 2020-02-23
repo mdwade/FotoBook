@@ -1,6 +1,6 @@
 package metiers;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import model.User;
 
@@ -36,11 +36,11 @@ public class FotoBookUtils {
 	}
 	
 	
-	public static boolean CheckIfTelephoneExist(String telephone, ArrayList<User> listClient) 
+	public static boolean CheckIfTelephoneExist(String telephone, List<User> listUser) 
 	{
 		Boolean exist = false;
 		
-		for(User u : listClient) {
+		for(User u : listUser) {
 			if(!telephone.equals(u.getPhoneNumber())) 
 			{
 				exist = true;
@@ -67,11 +67,11 @@ public class FotoBookUtils {
 	}
 	
 	
-	public static boolean CheckIfEmailExist(String email, ArrayList<User> listClient) 
+	public static boolean CheckIfEmailExist(String email, List<User> listUser) 
 	{
 		Boolean exist = false;
 		
-		for(User u : listClient) {
+		for(User u : listUser) {
 			if(!email.equals(u.getEmail())) 
 			{
 				exist = true;
@@ -79,6 +79,28 @@ public class FotoBookUtils {
 			break;
 		}
 		return exist;
+	}
+	
+	
+	public static boolean validateAge(int age) {
+		Boolean valide = false;
+		
+		if(age > 10 && age < 75) {
+			valide = true;
+		}
+		
+		return valide;
+	}
+	
+	public static boolean validatePassword(String password) {
+		Boolean valide = false;
+		
+		String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+		if(password.matches(passwordPattern)) {
+			valide = true;
+		}
+		
+		return valide;
 	}
 
 }
