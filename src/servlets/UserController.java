@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AlbumDaoLocal;
 import dao.UserDaoLocal;
-import metiers.FotoBookUtils;
+import metiers.UserUtils;
+import model.Album;
 import model.User;
 
 
@@ -22,7 +24,8 @@ import model.User;
 public class UserController extends HttpServlet {
 	
 	private static final long serialVersionUID                         =   1L;
-	private static final String HOME_PAGE                              =   "/home.jsp";
+	private static final String HOME_PAGE_URL                          =   "/FotoBook/home";
+	private static final String SIGN_IN_URL                            =   "/FotoBook/sign_in";
 	private static final String SIGN_IN_PAGE                           =   "/index.jsp";
 	private static final String SIGN_UP_PAGE						   =   "/WEB-INF/sign_up.jsp";
 	private static final String SIGN_IN_ERROR_MSG                      =   "Email ou mot de passe incorrect.";
@@ -42,19 +45,24 @@ public class UserController extends HttpServlet {
 	@EJB
 	private UserDaoLocal userDaoLocal;
 	
+	@EJB
+	private AlbumDaoLocal albumDaoLocal;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{		
 		String path                 =  request.getServletPath();
 		
 		switch(path) {
 			case "/sign_in":
+				//response.sendRedirect(SIGN_IN_PAGE);
 				this.getServletContext().getRequestDispatcher(SIGN_IN_PAGE).forward(request, response);
 				break;
 				
 			case "/sign_out":
 				HttpSession session = request.getSession();
 				session.invalidate();
-				this.getServletContext().getRequestDispatcher(HOME_PAGE).forward(request, response);
+				response.sendRedirect(SIGN_IN_URL);
+				//this.getServletContext().getRequestDispatcher(SIGN_IN_PAGE).forward(request, response);
 				break;
 				
 			case "/sign_up":
@@ -89,7 +97,7 @@ public class UserController extends HttpServlet {
 				if(errors.isEmpty()) {
 					HttpSession session = request.getSession();
 					session.setAttribute("user", u);
-					this.getServletContext().getRequestDispatcher(HOME_PAGE).forward(request, response);
+					response.sendRedirect(HOME_PAGE_URL);
 				}
 				else {
 					request.setAttribute("errors", errors);
@@ -110,7 +118,7 @@ public class UserController extends HttpServlet {
 				String  _password        =  request.getParameter("password");
 				String  _passwordConfirm =  request.getParameter("passwordConfirm");
 				
-				if(FotoBookUtils.checkIfEmpty(_lastName) || FotoBookUtils.checkIfEmpty(_firstName) || FotoBookUtils.checkIfEmpty(_address)) {
+				if(UserUtils.checkIfEmpty(_lastName) || UserUtils.checkIfEmpty(_firstName) || UserUtils.checkIfEmpty(_address)) {
 					errors.put("emptyFieldError", EMPTY_FIELD_ERROR_MSG);
 				}
 				else {
@@ -118,27 +126,27 @@ public class UserController extends HttpServlet {
 						errors.put("passwordError", NO_CONFORM_PASSWORD_MSG);
 					}
 					
-					if(!FotoBookUtils.validatePassword(_password)) {
+					if(!UserUtils.validatePassword(_password)) {
 						errors.put("passwordFormatError", PASSWORD_FORMAT_ERROR_MSG);
 					}
 					
-					if(!FotoBookUtils.validateEmailAddress(_email)){
+					if(!UserUtils.validateEmailAddress(_email)){
 						errors.put("emailFormatError", EMAIL_ERROR_MSG);
 					}
 					
-					if(!FotoBookUtils.CheckIfEmailExist(_email, userDaoLocal.getAllUser())) {
+					if(!UserUtils.CheckIfEmailExist(_email, userDaoLocal.getAllUser())) {
 						errors.put("emailExistError", EMAIL_ALREADY_EXIST_ERROR_MSG);
 					}
 					
-					if(!FotoBookUtils.validatePhoneNumber(_phoneNumber)) {
+					if(!UserUtils.validatePhoneNumber(_phoneNumber)) {
 						errors.put("phoneNumberFormatError", PHONE_NUMBER_ERROR_MSG);
 					}
 					
-					if(!FotoBookUtils.CheckIfTelephoneExist(_phoneNumber, userDaoLocal.getAllUser())) {
+					if(!UserUtils.CheckIfTelephoneExist(_phoneNumber, userDaoLocal.getAllUser())) {
 						errors.put("phoneNumberExistError", PHONE_NUMBER_ALREADY_EXIST_ERROR_MSG);
 					}
 					
-					if(!FotoBookUtils.validateAge(_age)) {
+					if(!UserUtils.validateAge(_age)) {
 						errors.put("ageError", AGE_ERROR_MSG);
 					}						
 				}
@@ -151,7 +159,8 @@ public class UserController extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("user", sampleUser);
 					
-					this.getServletContext().getRequestDispatcher(HOME_PAGE).forward(request, response);
+					response.sendRedirect(HOME_PAGE_URL);
+					//this.getServletContext().getRequestDispatcher(HOME_PAGE_URL).forward(request, response);
 				}
 				else {
 					request.setAttribute("errors",       errors);

@@ -24,7 +24,8 @@ public class Image implements Serializable {
 
 	private int height;
 
-	private String imageFile;
+	@Lob
+	private byte[] imageFile;
 
 	@Lob
 	private String keyWords;
@@ -77,11 +78,11 @@ public class Image implements Serializable {
 		this.height = height;
 	}
 
-	public String getImageFile() {
+	public byte[] getImageFile() {
 		return this.imageFile;
 	}
 
-	public void setImageFile(String imageFile) {
+	public void setImageFile(byte[] imageFile) {
 		this.imageFile = imageFile;
 	}
 

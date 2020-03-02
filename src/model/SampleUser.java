@@ -13,7 +13,7 @@ public class SampleUser extends User {
 
 	public SampleUser(int id, String address, int age, String email, String firstName, String lastName, String password,
 			String phoneNumber, Date registerDate, String userType, List<Album> albums) {
-		super(id, address, age, email, firstName, lastName, password, phoneNumber, registerDate, userType, albums);
+		super(id, address, age, email, firstName, lastName, password, phoneNumber, userType);
 	}
 
 }

@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="/FotoBook/static/css/mycss.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/FotoBook/static/css/sign_up.css">
-<title>FotoBook | Register</title>
+<link rel="icon" href="static/img/music.png">
+<title>Fotobook | Inscription</title>
 </head>
 <body>
 	
@@ -15,12 +16,13 @@
 		<div class="w3-col l5 register-left">
 			<img src="static/img/down-arrow.png">
 			<h1>Rejoignez nous !</h1>	
-			<p>Enregistrer vos albums photo.</p>
+			<p>Enregistrez et partagez vos albums photo avec le monde.</p>
 			<a href="/FotoBook/sign_in" class="w3-btn w3-round-xxlarge w3-white w3-hover-black">Connectez-vous</a>
 		</div>
 		
 		<div class="w3-col l7 register-right">
-			<h2>Inscription</h2>			
+			<h2>Inscription</h2>
+			<p class="w3-center" style="color: #555;">C'est simple et rapide.</p>			
 			<div class="register-form">
 				<form action="/FotoBook/sign_up" method="post">
 					<div class="w3-row-padding w3-margin">

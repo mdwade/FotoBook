@@ -1,5 +1,5 @@
 body {
-	background-image: url('../img/white1.jpg');
+	/*background-image: url('../img/white1.jpg');*/
 	background-size: cover;
 	background-repeat: no-repeat;
 }
@@ -14,4 +14,24 @@ a:hover {
 
 .mesAlbums {
 	background-color: rgba(255, 255, 255, 0.7);
+}
+
+input[type="text"] {
+	border-radius: 0 16px 0 16px;
+	padding: 14px;
+}
+
+input[type="text"]:focus {
+	border-radius: 16px 0 16px 0;
+	transition: 1s;
+	padding: 14px;
+}
+
+select {
+	border-radius: 0 16px 0 16px;
+}
+
+select:focus {
+	border-radius: 16px 0 16px 0;
+	transition: 1s;
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.User;
 
-public class FotoBookUtils {
+public class UserUtils {
 	
 	public static boolean checkIfEmpty(String data) 
 	{

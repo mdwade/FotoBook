@@ -8,7 +8,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "Album")
-@NamedQuery(name="Album.findAll", query="SELECT a FROM Album a")
+
+@NamedQueries({
+	@NamedQuery(name = "Album.findAll",    query ="SELECT a FROM Album a"),
+	@NamedQuery(name = "Album.find",       query = "SELECT a FROM Album a where a.user.id = :userId"),
+	@NamedQuery(name = "Album.findPublic", query = "SELECT a FROM Album a where a.access  = 'public'")
+})
 public class Album implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -36,6 +41,15 @@ public class Album implements Serializable {
 	private List<Image> images;
 
 	public Album() {
+	}
+	
+	public Album(int id, String access, String name, String theme, User user) {		
+		this.id = id;
+		this.access = access;
+		this.name = name;
+		this.theme = theme;
+		this.creationDate = new Date(System.currentTimeMillis());
+		this.setUser(user);
 	}
 
 	public int getId() {
