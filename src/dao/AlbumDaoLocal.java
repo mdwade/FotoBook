@@ -18,6 +18,9 @@ public interface AlbumDaoLocal {
 	public Album getAlbum(int albumId);
 	
 	
+	public int getLastAlbumIndex();
+	
+	
 	public List<Album> getAlbumsByUserId(int userId);
 	
 	
@@ -25,4 +28,9 @@ public interface AlbumDaoLocal {
 	
 	
 	public List<Album> getAllAlbum();
+	
+	
+	public void insertSharedAlbum(String [] idUser, int idAlbum);
 }
+
+

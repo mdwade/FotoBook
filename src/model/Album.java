@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.google.gson.annotations.Expose;
+
 import java.util.Date;
 import java.util.List;
 
@@ -10,34 +13,41 @@ import java.util.List;
 @Table(name = "Album")
 
 @NamedQueries({
-	@NamedQuery(name = "Album.findAll",    query ="SELECT a FROM Album a"),
+	@NamedQuery(name = "Album.findAll",    query = "SELECT a FROM Album a"),
 	@NamedQuery(name = "Album.find",       query = "SELECT a FROM Album a where a.user.id = :userId"),
-	@NamedQuery(name = "Album.findPublic", query = "SELECT a FROM Album a where a.access  = 'public'")
+	@NamedQuery(name = "Album.findPublic", query = "SELECT a FROM Album a where a.access  = 'public'"),
+	@NamedQuery(name = "Album.lastIndex",  query = "SELECT MAX(a.id) FROM Album a")
 })
 public class Album implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private int id;
 
+	@Expose
 	private String access;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="creation_date")
+	@Expose
 	private Date creationDate;
 
+	@Expose
 	private String name;
 
+	@Expose
 	private String theme;
 
 	
 	@ManyToOne
 	@JoinColumn(name="idUser")
+	@Expose
 	private User user;
 
 	
-	@OneToMany(mappedBy="album")
+	@OneToMany(mappedBy="album", cascade = CascadeType.ALL)
 	private List<Image> images;
 
 	public Album() {

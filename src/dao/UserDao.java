@@ -1,5 +1,6 @@
 package dao;
 
+
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -33,7 +34,10 @@ public class UserDao implements UserDaoLocal {
 
 	@Override
 	public void deleteUser(int userId) {		
-		em.remove(getUser(userId));
+		User u = getUser(userId);
+		
+		em.remove(u);
+		//System.out.println(u.getFirstName());
 	}
 
 	@Override
@@ -63,8 +67,20 @@ public class UserDao implements UserDaoLocal {
 
 	@Override
 	public List<User> getAllUser() {		
+					
+		List<User> listUser = null;
 		TypedQuery<User> query = em.createNamedQuery("User.findAll", User.class);
-		return query.getResultList();
+		
+		try {
+			listUser = (List<User>) query.getResultList();			
+		} 
+		catch (NoResultException e) 
+		{
+			
+		} catch (Exception e) {
+			
+		}
+		return listUser;
 	}
 
 

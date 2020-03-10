@@ -3,13 +3,14 @@
 	<!-- <a href="#" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Albums publiques</a> -->  		  
   	<c:choose>  		
   		<c:when test="${!empty sessionScope.user}">
-  			<a href="#" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Mes albums</a>
+  			<a href="/FotoBook/home" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Mes albums</a>
+  			<a href="#" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Albums publics</a>
   			<c:if test="${sessionScope.user.userType == 'ADMIN'}">
-  				<a href="#" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Gérer les utilisateurs</a>
+  				<a href="/FotoBook/users" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Gérer les utilisateurs</a>
   			</c:if>
   			<div class="w3-dropdown-hover w3-mobile w3-hide-small w3-right">
 	  			<button class="w3-btn w3-hover-black w3-text-grey w3-hover-text-white">			    	
-					<i class="fa fa-user"></i> ${sessionScope.user.firstName} ${sessionScope.user.lastName}					
+					<i class="fa fa-user-circle w3-large"></i> ${sessionScope.user.firstName} ${sessionScope.user.lastName}					
 			    </button>
 			    <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
 			      <a href="/FotoBook/sign_out" class="w3-bar-item w3-btn w3-black">Déconnexion</a>
@@ -31,7 +32,8 @@
 	<!-- <a href="#" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Albums publiques</a> -->
 	<c:choose>		
   		<c:when test="${!empty sessionScope.user}">
-  			<a href="#" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Mes albums</a>  			  				
+  			<a href="#" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Mes albums</a>
+  			<a href="#" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Albums publics</a>  			  				
   			<c:if test="${sessionScope.user.userType == 'ADMIN'}">
   				<a href="#" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Gérer les utilisateurs</a>  				
   			</c:if>

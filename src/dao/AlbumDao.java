@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -22,7 +23,14 @@ public class AlbumDao implements AlbumDaoLocal {
 	
 	@Override
 	public void addAlbum(Album a) {
-		em.persist(a);
+		//em.persist(a);
+		em.createNativeQuery("INSERT INTO Album (name, theme, access, creation_date, idUser) VALUES (?,?,?,?,?)")
+	      .setParameter(1, a.getName())
+	      .setParameter(2, a.getTheme())
+	      .setParameter(3, a.getAccess())	      
+	      .setParameter(4, new Date(System.currentTimeMillis()))
+	      .setParameter(5, a.getUser().getId())
+	      .executeUpdate();
 	}
 
 	
@@ -86,5 +94,27 @@ public class AlbumDao implements AlbumDaoLocal {
 		TypedQuery<Album> query = em.createNamedQuery("Album.findAll", Album.class);
 		return query.getResultList();
 	}
+
+
+	@Override
+	public int getLastAlbumIndex() {
+		TypedQuery<Integer> query = em.createNamedQuery("Album.lastIndex", Integer.class);
+		return query.getSingleResult();
+		
+	}
+
+
+	@Override
+	public void insertSharedAlbum(String [] idUser, int idAlbum) {
+		for(String id: idUser) {
+			em.createNativeQuery("INSERT INTO shared_album (idUser, idAlbum) VALUES (?,?)")
+		      .setParameter(1, id)	
+		      .setParameter(2, idAlbum)	
+		      .executeUpdate();
+		}
+	}
+	
+	
+	
 
 }

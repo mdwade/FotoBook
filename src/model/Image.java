@@ -39,7 +39,7 @@ public class Image implements Serializable {
 	private int width;
 
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idAlbum")
 	private Album album;
 

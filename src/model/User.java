@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.google.gson.annotations.Expose;
+
 import java.util.Date;
 import java.util.List;
 
@@ -18,35 +21,46 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private int id;
 
 	@Lob
+	@Expose
 	private String address;
 
+	@Expose
 	private int age;
 
+	@Expose
 	private String email;
 
+	@Expose
 	@Column(name="first_name")
 	private String firstName;
 
+	@Expose
 	@Column(name="last_name")
 	private String lastName;
 
+	@Expose
 	private String password;
 
+	@Expose
 	@Column(name="phone_number")
 	private String phoneNumber;
 
+	@Expose
 	@Temporal(TemporalType.DATE)
 	@Column(name="register_date")
 	private Date registerDate;
 
+	@Expose
 	@Column(name="user_type")
 	private String userType;
 
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	
 	private List<Album> albums;
 
 	public User() {
