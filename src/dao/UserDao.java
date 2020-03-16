@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import model.User;
@@ -81,6 +82,29 @@ public class UserDao implements UserDaoLocal {
 			
 		}
 		return listUser;
+	}
+
+
+	@Override
+	public List<User> getAuthorisedUser(int idAlbum) {
+		List<User> listUser = null;
+		
+		String sql = "SELECT * FROM User u where u.id IN (SELECT idUser FROM shared_album s where s.idAlbum = ? )";
+		Query query = em.createNativeQuery(sql);
+		query.setParameter(1, idAlbum);
+		
+		
+		try {
+			listUser = query.getResultList();			
+		} 
+		catch (NoResultException e) 
+		{
+			
+		} catch (Exception e) {
+			
+		}
+		return listUser;
+				
 	}
 
 

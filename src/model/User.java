@@ -12,8 +12,8 @@ import java.util.List;
 @Entity
 @Table(name = "User")
 @NamedQueries({
-	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-	@NamedQuery(name = "User.find",    query = "SELECT u FROM User u where u.email = :email")
+	@NamedQuery(name = "User.findAll",        query = "SELECT u FROM User u"),
+	@NamedQuery(name = "User.find",           query = "SELECT u FROM User u where u.email = :email"),
 })
 
 public class User implements Serializable {
@@ -59,8 +59,7 @@ public class User implements Serializable {
 	private String userType;
 
 	
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
-	
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)	
 	private List<Album> albums;
 
 	public User() {

@@ -27,4 +27,7 @@ public interface UserDaoLocal
 	
 	public List<User> getAllUser();
 	
+	
+	public List<User> getAuthorisedUser(int idAlbum);
+	
 }

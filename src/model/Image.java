@@ -2,49 +2,82 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.google.gson.annotations.Expose;
+
 import java.util.Date;
 
 
 @Entity
 @Table(name = "Image")
-@NamedQuery(name="Image.findAll", query="SELECT i FROM Image i")
+@NamedQueries({
+	@NamedQuery(name = "Image.findAll", query = "SELECT i FROM Image i"),
+	@NamedQuery(name = "Image.find",    query = "SELECT i FROM Image i where i.album.id = :albumId"),
+})
+
 public class Image implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private int id;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="creation_date")
+	@Expose
 	private Date creationDate;
 
 	@Lob
+	@Expose
 	private String description;
 
+	@Expose
 	private int height;
 
 	@Lob
-	private byte[] imageFile;
+	@Expose
+	private String imageFile;
 
 	@Lob
+	@Expose
 	private String keyWords;
 
+	@Expose
 	private String title;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="updated_date")
+	@Expose
 	private Date updatedDate;
 
+	@Expose
 	private int width;
 
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="idAlbum")
 	private Album album;
 
 	public Image() {
 	}
+
+	
+	public Image(int id, String description, int height, String imageFile, String keyWords,
+			String title, int width, Album album) {
+		
+		this.id = id;
+		this.creationDate = new Date(System.currentTimeMillis());
+		this.description = description;
+		this.height = height;
+		this.imageFile = imageFile;
+		this.keyWords = keyWords;
+		this.title = title;
+		this.updatedDate = null;
+		this.width = width;
+		this.setAlbum(album);
+	}
+
 
 	public int getId() {
 		return this.id;
@@ -78,11 +111,11 @@ public class Image implements Serializable {
 		this.height = height;
 	}
 
-	public byte[] getImageFile() {
+	public String getImageFile() {
 		return this.imageFile;
 	}
 
-	public void setImageFile(byte[] imageFile) {
+	public void setImageFile(String imageFile) {
 		this.imageFile = imageFile;
 	}
 

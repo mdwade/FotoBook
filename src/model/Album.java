@@ -48,6 +48,7 @@ public class Album implements Serializable {
 
 	
 	@OneToMany(mappedBy="album", cascade = CascadeType.ALL)
+	@Expose
 	private List<Image> images;
 
 	public Album() {
@@ -116,20 +117,6 @@ public class Album implements Serializable {
 
 	public void setImages(List<Image> images) {
 		this.images = images;
-	}
-
-	public Image addImage(Image image) {
-		getImages().add(image);
-		image.setAlbum(this);
-
-		return image;
-	}
-
-	public Image removeImage(Image image) {
-		getImages().remove(image);
-		image.setAlbum(null);
-
-		return image;
 	}
 
 }

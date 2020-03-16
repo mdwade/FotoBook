@@ -1,19 +1,6 @@
-let album = {
-		
-}
-
-
-var app = new Vue({
-  el: '#app',
-  components: { album },
-  data: {
-	  albumTitle: ""
-  },
-  
-  methods:{
-	  getSelectedAlbumName: function(albumName){		  
-		  this.albumTitle = albumName;
-	  }, 
-  }  
-  
-})
+$(document).on("click", ".albumName", function (e){			
+	let id = $(e.target).closest("a").data("id");
+	$.get("/FotoBook/get_album1?id="+id).done(function(data) {		
+		$('#albumBloc').html(data);
+	});
+});

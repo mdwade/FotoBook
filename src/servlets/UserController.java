@@ -52,7 +52,8 @@ public class UserController extends HttpServlet {
 	private AlbumDaoLocal albumDaoLocal;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{		
+	{	
+		request.setCharacterEncoding("UTF-8");
 		String path                 =  request.getServletPath();
 		
 		switch(path) {
@@ -87,7 +88,7 @@ public class UserController extends HttpServlet {
 				response.setContentType("/application/json");
 				response.getWriter().write(json1);				
 				response.getWriter().flush();			
-				break;	
+				break;
 			
 			case "/delete_user":
 				int idUser1 = Integer.parseInt(request.getParameter("id"));

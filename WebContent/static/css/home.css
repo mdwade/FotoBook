@@ -13,7 +13,7 @@ a:hover {
 }
 
 .mesAlbums {
-	background-color: rgba(255, 255, 255, 0.7);
+	background-color: rgba(255, 255, 255, 1);	
 }
 
 input[type="text"] {
@@ -34,4 +34,37 @@ select {
 select:focus {
 	border-radius: 16px 0 16px 0;
 	transition: 1s;
+}
+
+#openAlbumInfos:hover{
+	cursor: pointer;
+}
+
+.albuminfos{
+	margin-top: 10px;
+}
+
+.editForm .inputfile {
+	width: 0.1px; 
+	height: 0.1px; 
+	opacity: 0; 
+	overflow: hidden; 
+	position: absolute; 
+	z-index: -1;\n" + 
+}
+													 
+.editForm .inputfile + label { 
+    font-size: 1.25em; 
+    padding: 10px; 
+    display: inline-block; 
+}
+													 
+.editForm .inputfile:focus + label, 
+.editForm .inputfile + label:hover { 
+	    background-color: orange; 
+	    border-radius: 5px;
+	}
+													 
+.editForm .inputfile+label {
+	cursor: pointer;
 }

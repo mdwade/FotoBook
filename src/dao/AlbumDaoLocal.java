@@ -31,6 +31,9 @@ public interface AlbumDaoLocal {
 	
 	
 	public void insertSharedAlbum(String [] idUser, int idAlbum);
+	
+	
+	public void updateSharedAlbum(int idAlbum);
 }
 
 
