@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import dao.AlbumDaoLocal;
 import dao.UserDaoLocal;
 import model.Album;
@@ -20,10 +23,11 @@ import model.User;
  * Servlet implementation class HomeController
  */
 
-@WebServlet({"/home", "/users"})
+@WebServlet({"/home", "/home1", "/users"})
 public class HomeController extends HttpServlet {
-	private static final long serialVersionUID                         = 1L;
+	private static final long serialVersionUID                         =   1L;
 	private static final String HOME_PAGE                              =   "/home.jsp";
+	private static final String HOME1_PAGE                             =   "/home1.jsp";
 	private static final String LIST_USER_PAGE					       =   "/list_user.jsp";
 	
 	@EJB
@@ -39,14 +43,22 @@ public class HomeController extends HttpServlet {
 		
 		switch(path) {
 			case "/home":
-				List<Album> albums         =  albumDaoLocal.getAlbumsByUserId(u.getId()), 
-				albumsPublic   =  albumDaoLocal.getAlbumsPublic();
+				List<Album> albums         =    albumDaoLocal.getAlbumsByUserId(u.getId()), 
+				albumsPublic               =    albumDaoLocal.getAlbumsPublic();
 	
 				request.setAttribute("albums",       albums);
 				request.setAttribute("albumsPublic", albumsPublic);
 				this.getServletContext().getRequestDispatcher(HOME_PAGE).forward(request, response);
 				break;
 				
+			case "/home1":
+				List<Album> albumsPublics  =   albumDaoLocal.getAlbumsPublic();
+				for(Album al:albumsPublics) {
+					System.out.println(al.getName());
+				}
+				request.setAttribute("albumsPublics", albumsPublics);
+				this.getServletContext().getRequestDispatcher(HOME1_PAGE).forward(request, response);
+				break;
 				
 			case "/users":	
 				request.setAttribute("listUtilisateur", userDaoLocal.getAllUser());
