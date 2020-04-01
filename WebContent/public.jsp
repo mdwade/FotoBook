@@ -14,7 +14,7 @@
 <body>
 	<div class="w3-bar w3-black w3-padding-large">
 	  	<a class="w3-bar-item" style="text-decoration: none"><img src="static/img/music1.png" width="20">otoBook</a>	  	
-	  	<a href="/FotoBook/home1" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Albums</a>	
+	  	<a href="/FotoBook/public" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Albums</a>	
 	  	<a href="#" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Photos</a>		  		 	  		  	   
 	</div>
 	
@@ -46,7 +46,7 @@
 						</c:when>
 
 						<c:otherwise>
-							<p>Votre liste d'album est vide.</p>
+							<p>La liste des albums publiques est vide.</p>
 						</c:otherwise>
 					</c:choose>
 				</div>

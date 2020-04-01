@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +21,7 @@ import dao.AlbumDaoLocal;
 import dao.ImageDaoLocal;
 import dao.UserDaoLocal;
 import metiers.AlbumUtils;
+import metiers.SweetAlert;
 import model.Album;
 import model.Image;
 import model.User;
@@ -48,33 +50,33 @@ public class AlbumController extends HttpServlet {
 		
 		switch(path) {
 		case "/get_album":
-			int idAlbum  = Integer.parseInt(request.getParameter("id"));
-			Album alb = albumDaoLocal.getAlbum(idAlbum);
-			Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-			String json = gson.toJson(alb);
+			int idAlbum    = Integer.parseInt(request.getParameter("id"));
+			Album alb      = albumDaoLocal.getAlbum(idAlbum);
+			Gson gson      = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+			String json    = gson.toJson(alb);
 			response.setContentType("/application/json");
 			response.getWriter().write(json);			
 			response.getWriter().flush();			
 			break;
 			
 		case "/get_album1":
-			int idAlbum_  = Integer.parseInt(request.getParameter("id"));
-			Album alb1 = albumDaoLocal.getAlbum(idAlbum_);
+			int idAlbum_      = Integer.parseInt(request.getParameter("id"));
+			Album alb1        = albumDaoLocal.getAlbum(idAlbum_);
 			alb1.setImages(imageDaoLocal.getImageByAlbumId(idAlbum_));
 			String uploadPath = global.UPLOAD_FILE_DIRECTORY;
-			String message  = AlbumUtils.albumBloc(alb1, uploadPath);
-			Gson gson_ = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-			String json_ = gson_.toJson(message);
+			String message    = AlbumUtils.albumBloc(alb1, uploadPath);
+			Gson gson_        = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+			String json_      = gson_.toJson(message);
 			response.setContentType("/application/json");
 			response.getWriter().write(json_);			
 			response.getWriter().flush();			
 			break;
 			
 		case "/get_authorised_users":
-			int idAlbum1  = Integer.parseInt(request.getParameter("id"));
+			int idAlbum1                 = Integer.parseInt(request.getParameter("id"));
 			List<User> listAuthorsedUser = userDaoLocal.getAuthorisedUser(idAlbum1);
-			Gson gson1 = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-			String json1 = gson1.toJson(listAuthorsedUser);
+			Gson gson1                   = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+			String json1                 = gson1.toJson(listAuthorsedUser);
 			response.setContentType("/application/json");
 			response.getWriter().write(json1);				
 			response.getWriter().flush();			
@@ -85,6 +87,7 @@ public class AlbumController extends HttpServlet {
 			albumDaoLocal.deleteAlbum(idAlbum2);
 			response.sendRedirect("/FotoBook/home");	
 			break;
+			
 		}
 		
 	}
@@ -92,9 +95,9 @@ public class AlbumController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String path                   =   request.getServletPath();
-		Map<String, String> errors    =   new HashMap<String, String>();
-		User u                        =   (User) request.getSession().getAttribute("user");
+		String path                     =   request.getServletPath();
+		Map<String, String> errors      =   new HashMap<String, String>();
+		User u                          =   (User) request.getSession().getAttribute("user");
 		
 		
 		switch (path) {
@@ -129,15 +132,13 @@ public class AlbumController extends HttpServlet {
 								break;
 						}
 					}
-					catch(NullPointerException e) {
-						
-					}
-																			
+					catch(NullPointerException e) {}
+					
 					response.sendRedirect("/FotoBook/home");					
 				}
 				else {
-					request.setAttribute("errors", errors);
-					
+					request.setAttribute("errors", errors);	
+					request.getSession().setAttribute("user", u);
 					this.getServletContext().getRequestDispatcher(HOME_PAGE).forward(request, response);
 				}
 				
@@ -180,15 +181,12 @@ public class AlbumController extends HttpServlet {
 						}
 						
 					}
-					catch(NullPointerException e) {
-						
-					}
+					catch(NullPointerException e) {}
 																			
 					response.sendRedirect("/FotoBook/home");					
 				}
 				else {
-					request.setAttribute("errors", errors);
-					
+					request.setAttribute("errors", errors);					
 					this.getServletContext().getRequestDispatcher(HOME_PAGE).forward(request, response);
 				}
 				

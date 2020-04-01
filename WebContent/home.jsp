@@ -13,6 +13,7 @@
 <link href="static/css/lightbox.css" rel="stylesheet" />
 <script src="static/js/jquery.js"></script>
 <script src="static/js/lightbox-plus-jquery.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <title>Fotobook | Accueil</title>
 </head>
 <body>
@@ -440,7 +441,7 @@
 	$("#aprive").click(function(){
 		$("#id02users").show();
 	});
-
+	
 </script>
 <script src="static/js/home.js"></script>
 </html>

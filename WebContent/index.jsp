@@ -61,7 +61,7 @@
 			</div>
 		</div>
 		<div class="w3-margin w3-text-white">
-			<a href="/FotoBook/sign_up" class="">Inscription</a> |  <a href="/FotoBook/home1" class="">Visiter le site</a>
+			<a href="/FotoBook/sign_up" class="">Inscription</a> |  <a href="/FotoBook/public" class="">Visiter le site</a>
 		</div>
 	</div>
 	

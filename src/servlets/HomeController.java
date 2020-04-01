@@ -19,15 +19,12 @@ import dao.UserDaoLocal;
 import model.Album;
 import model.User;
 
-/**
- * Servlet implementation class HomeController
- */
 
-@WebServlet({"/home", "/home1", "/users"})
+@WebServlet({"/home", "/public", "/users"})
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID                         =   1L;
 	private static final String HOME_PAGE                              =   "/home.jsp";
-	private static final String HOME1_PAGE                             =   "/home1.jsp";
+	private static final String PUBLIC_PAGE                             =   "/public.jsp";
 	private static final String LIST_USER_PAGE					       =   "/list_user.jsp";
 	
 	@EJB
@@ -51,13 +48,13 @@ public class HomeController extends HttpServlet {
 				this.getServletContext().getRequestDispatcher(HOME_PAGE).forward(request, response);
 				break;
 				
-			case "/home1":
+			case "/public":
 				List<Album> albumsPublics  =   albumDaoLocal.getAlbumsPublic();
 				for(Album al:albumsPublics) {
 					System.out.println(al.getName());
 				}
 				request.setAttribute("albumsPublics", albumsPublics);
-				this.getServletContext().getRequestDispatcher(HOME1_PAGE).forward(request, response);
+				this.getServletContext().getRequestDispatcher(PUBLIC_PAGE).forward(request, response);
 				break;
 				
 			case "/users":	
