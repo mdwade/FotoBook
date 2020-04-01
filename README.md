@@ -26,7 +26,7 @@
 
 ```
 
-### Côté visiteur
+#### Côté visiteur
 ```
 - Inscription
 - Voir les photos des albums publiques
