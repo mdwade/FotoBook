@@ -20,11 +20,12 @@ import model.Album;
 import model.User;
 
 
-@WebServlet({"/home", "/public", "/users"})
+@WebServlet({"/home", "/public", "/private", "/users"})
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID                         =   1L;
 	private static final String HOME_PAGE                              =   "/home.jsp";
-	private static final String PUBLIC_PAGE                             =   "/public.jsp";
+	private static final String PUBLIC_PAGE                            =   "/public.jsp";
+	private static final String PRIVATE_PAGE                           =   "/private.jsp";
 	private static final String LIST_USER_PAGE					       =   "/list_user.jsp";
 	
 	@EJB
@@ -66,6 +67,20 @@ public class HomeController extends HttpServlet {
 				
 				request.setAttribute("albumsPublics", albumsPublics);
 				this.getServletContext().getRequestDispatcher(PUBLIC_PAGE).forward(request, response);
+				break;
+				
+			case "/private":
+				List<Album> alb = null;
+				
+				if(u.getUserType().equals("ADMIN")) {
+					alb = albumDaoLocal.getAlbumsPrivate(u.getId());					
+				}
+				else {
+					alb = albumDaoLocal.getAlbumAutorisedToUser(u.getId());					
+				}
+				
+				request.setAttribute("albumsPublics", alb);
+				this.getServletContext().getRequestDispatcher(PRIVATE_PAGE).forward(request, response);
 				break;
 				
 			case "/users":	

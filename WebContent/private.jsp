@@ -94,7 +94,7 @@
 					</c:when>
 
 					<c:otherwise>
-						<p>La liste des albums publiques est vide.</p>
+						<p>La liste des albums privés est vide.</p>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -381,13 +381,7 @@
 	
 //-----------------------------------------------------------------------------------------------------------------------------------
 
-	$("#apublic").click(function(){
-		$("#id02users").hide();
-	});
-	
-	$("#aprive").click(function(){
-		$("#id02users").show();
-	});
+
 
 </script>
 </html>

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class HomeFilter
  */
-@WebFilter({"/home", "/users"})
+@WebFilter({"/home", "/users", "/private"})
 public class HomeFilter implements Filter {
 
     
