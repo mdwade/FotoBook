@@ -150,7 +150,10 @@ public class AlbumController extends HttpServlet {
 				String  theme1           =  request.getParameter("theme");
 				String  access1          =  request.getParameter("access");				
 				String  [] sharedUser1   =  request.getParameterValues("users");
-								
+				
+				Album 	albToUpdate      =  albumDaoLocal.getAlbum(idAlbum);
+				User    albOwner         =  albToUpdate.getUser();
+				System.out.println(albOwner.getId());
 				
 				if(AlbumUtils.checkIfEmpty(name1)) {
 					errors.put("emptyFieldError", EMPTY_FIELD_ERROR_MSG);				
@@ -158,7 +161,7 @@ public class AlbumController extends HttpServlet {
 				
 				if(errors.isEmpty()) {				
 										
-					Album a = new Album(idAlbum, access1, name1, theme1, u);					
+					Album a = new Album(idAlbum, access1, name1, theme1, albOwner);					
 														
 					try {
 												

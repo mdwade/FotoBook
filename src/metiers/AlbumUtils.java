@@ -32,9 +32,9 @@ public class AlbumUtils {
 	}
 	
 	public static String albumBloc(Album a, String uploadPath) {
-		uploadPath +=  a.getName().replaceAll(" ", "-");
-		String albumNameWithoutSpace = a.getName().replaceAll(" ", "-");
-		
+		uploadPath +=  a.getId();
+		int albumNameWithoutSpace = a.getId();
+		System.out.println(uploadPath);
 		String msg1 = "<div class=\"w3-row\">\n" + 
 		"				<div class=\"w3-col l10\">\n" + 
 		"					<h4 id=\"albumTitle\">"+a.getName()+"</h4>\n" + 

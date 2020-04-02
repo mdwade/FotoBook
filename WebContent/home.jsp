@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="static/css/home.css">
 <link rel="icon" href="static/img/music.png">
 <script src="static/js/vue.js"></script>
-<link href="static/css/lightbox.css" rel="stylesheet" />
+<link href="static/css/lightbox.css" rel="stylesheet"/>
 <script src="static/js/jquery.js"></script>
 <script src="static/js/lightbox-plus-jquery.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -319,8 +319,7 @@
 	            	$('#users').find('option[value='+userId+']').remove();
 	            	$("#users").hide();
 	            }           
-	            $('#id01').show();
-	            //console.log(data);
+	            $('#id01').show();	            
 	        }
 	    });
 	});

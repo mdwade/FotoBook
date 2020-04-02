@@ -81,8 +81,8 @@ public class ImageController extends HttpServlet {
 			case "/delete_image":
 				int idImage1     = Integer.parseInt(request.getParameter("id"));
 				Image i1         = imageDaoLocal.getImage(idImage1);
-				String albumName = i1.getAlbum().getName();
-				String imageDir  = global.UPLOAD_FILE_DIRECTORY+albumName.replace(" ", "-");
+				int albumName = i1.getAlbum().getId();
+				String imageDir  = global.UPLOAD_FILE_DIRECTORY+albumName;
 				File img     = new File(imageDir+"/"+i1.getImageFile());
 				Files.deleteIfExists(img.toPath());				
 				imageDaoLocal.deleteImage(idImage1);
@@ -109,7 +109,7 @@ public class ImageController extends HttpServlet {
 
 			
 			//String uploadPath = getServletContext().getRealPath("") + File.separator + album.getName();
-			String uploadPath = global.UPLOAD_FILE_DIRECTORY + album.getName();
+			String uploadPath = global.UPLOAD_FILE_DIRECTORY + album.getId();
 			uploadPath = uploadPath.replaceAll(" ", "-");
 			
 			FileUtils.mkUploadDir(uploadPath);	
