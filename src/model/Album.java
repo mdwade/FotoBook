@@ -13,10 +13,10 @@ import java.util.List;
 @Table(name = "Album")
 
 @NamedQueries({
-	@NamedQuery(name = "Album.findAll",    query = "SELECT a FROM Album a"),
-	@NamedQuery(name = "Album.find",       query = "SELECT a FROM Album a where a.user.id = :userId"),
-	@NamedQuery(name = "Album.findPublic", query = "SELECT a FROM Album a where a.access  = 'public'"),
-	@NamedQuery(name = "Album.lastIndex",  query = "SELECT MAX(a.id) FROM Album a")
+	@NamedQuery(name = "Album.findAll",         query = "SELECT a FROM Album a"),
+	@NamedQuery(name = "Album.find",            query = "SELECT a FROM Album a where a.user.id = :userId"),
+	@NamedQuery(name = "Album.findPublic",      query = "SELECT a FROM Album a where a.access  = 'public'"),
+	@NamedQuery(name = "Album.lastIndex",       query = "SELECT MAX(a.id) FROM Album a")
 })
 public class Album implements Serializable {
 	private static final long serialVersionUID = 1L;

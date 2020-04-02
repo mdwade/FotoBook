@@ -13,16 +13,37 @@
 </head>
 <body>
 	<div class="w3-bar w3-black w3-padding-large">
-	  	<a class="w3-bar-item" style="text-decoration: none"><img src="static/img/music1.png" width="20">otoBook</a>	  	
-	  	<a href="/FotoBook/public" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Albums</a>	
-	  	<a href="#" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Photos</a>		  		 	  		  	   
+	  	<a class="w3-bar-item" style="text-decoration: none"><img src="static/img/music1.png" width="20">otoBook</a>
+	  	<c:if test="${!empty sessionScope.user}">	  	
+	  		<a href="/FotoBook/home" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Mes albums</a>
+	  	</c:if>
+	  	<a href="/FotoBook/public" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Albums publiques</a>
+	  	<c:if test="${sessionScope.user.userType == 'ADMIN'}">
+			<a href="/FotoBook/users" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Gérer les utilisateurs</a>
+		</c:if>		
+		<c:if test="${!empty sessionScope.user}"> 
+			<div class="w3-dropdown-hover w3-mobile w3-hide-small w3-right">
+	  			<button class="w3-btn w3-hover-black w3-text-grey w3-hover-text-white">			    	
+					<i class="fa fa-user-circle w3-large"></i> ${sessionScope.user.firstName} ${sessionScope.user.lastName}					
+			    </button>
+			    <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
+			      <a href="/FotoBook/sign_out" class="w3-bar-item w3-btn w3-black">Déconnexion</a>
+			    </div>
+		   </div>
+		</c:if>	
+		<c:if test="${empty sessionScope.user}">	
+			<div class="w3-right">
+				<a href="/FotoBook/sign_in" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Se connecter</a>
+				<a href="/FotoBook/sign_up" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">S'inscrire</a>
+			</div>  	
+	  	</c:if>	  		 	  		  	   
 	</div>
 	
 	<div class="w3-container">
 		<div class="w3-container w3-border w3-round w3-margin w3-padding-large mesAlbums">
 				<div class="w3-row">
 					<div class="w3-col l6">
-						<h4>Liste des albums</h4>
+						<h4>Albums publiques</h4>
 					</div>					
 				</div>
 
@@ -40,6 +61,26 @@
 												<c:out value="${ album.getName() }" />
 											</a>
 										</div>
+										<c:if test="${!empty sessionScope.user && sessionScope.user.userType == 'ADMIN'}">
+											<div class="w3-row w3-right">
+												<div class="w3-col s3" style="padding-right: 15px">
+													<c:choose>
+														<c:when test="${ album.getAccess() == 'prive' }">
+															<a href="#"><i class="fa fa-lock w3-text-grey"></i></a>
+														</c:when>
+														<c:otherwise>
+															<a href="#"><i class="fa fa-unlock w3-text-grey"></i></a>
+														</c:otherwise>
+													</c:choose>
+												</div>
+												<div class="w3-col s3" style="padding-right: 20px" data-id="${ album.getId() }">
+													<a href="#" class="edit"><i class="fa fa-edit w3-text-orange"></i></a>
+												</div>
+												<div class="w3-col s3">
+													<a href="/FotoBook/delete_album?id=${ album.getId() }" onclick="return confirm('Voulez-vous vraiment supprimer l\'album ?')"><i class="fa fa-trash w3-text-red"></i></a>
+												</div>
+											</div>
+										</c:if>
 									</div>									
 								</div>
 							</c:forEach>
@@ -51,7 +92,7 @@
 					</c:choose>
 				</div>
 			</div>
-		
+			
 	</div>
 </body>
 </html>

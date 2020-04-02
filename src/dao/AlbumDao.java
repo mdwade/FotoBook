@@ -89,6 +89,63 @@ public class AlbumDao implements AlbumDaoLocal {
 		return album;
 	}
 	
+	
+	@Override
+	public List<Album> getAlbumsPublic(int idUser) {
+		
+		Query q = em.createNativeQuery("SELECT * from Album where access = 'public' and idUser != ?", Album.class);
+	      q.setParameter(1, idUser);
+	    
+	    List<Album> album = null;	
+			
+		try {
+			album = q.getResultList();
+		} 
+		catch (NoResultException e) {
+			return null;
+		} catch (Exception e) {
+			
+		}
+		return album;
+	}
+	
+	@Override
+	public List<Album> getAlbumAutorisedToUser(int userId) {
+		
+		Query q = em.createNativeQuery("SELECT * from Album where id IN (SELECT idAlbum from shared_album where idUser = ?)", Album.class);
+	      q.setParameter(1, userId);   
+	    
+	    List<Album> album = null;	
+			
+		try {
+			album = q.getResultList();
+		} 
+		catch (NoResultException e) {
+			return null;
+		} catch (Exception e) {
+			
+		}
+		return album;
+		
+	}
+	
+	@Override
+	public List<Album> getAlbumsPrivate(int idUser) {
+		Query q = em.createNativeQuery("SELECT * from Album where access = 'prive' and idUser != ?", Album.class);
+	      q.setParameter(1, idUser);
+	    
+	    List<Album> album = null;	
+			
+		try {
+			album = q.getResultList();
+		} 
+		catch (NoResultException e) {
+			return null;
+		} catch (Exception e) {
+			
+		}
+		return album;
+	}
 
 	@Override
 	public List<Album> getAllAlbum() {
@@ -123,8 +180,5 @@ public class AlbumDao implements AlbumDaoLocal {
 	      .executeUpdate();
 		
 	}
-	
-	
-	
 
 }

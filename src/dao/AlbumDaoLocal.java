@@ -27,6 +27,15 @@ public interface AlbumDaoLocal {
 	public List<Album> getAlbumsPublic();
 	
 	
+	public List<Album> getAlbumsPublic(int idUser);
+	
+	
+	public List<Album> getAlbumAutorisedToUser(int userId);
+	
+	
+	public List<Album>getAlbumsPrivate(int userId);
+	
+	
 	public List<Album> getAllAlbum();
 	
 	

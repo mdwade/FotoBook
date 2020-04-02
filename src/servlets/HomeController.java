@@ -49,10 +49,21 @@ public class HomeController extends HttpServlet {
 				break;
 				
 			case "/public":
-				List<Album> albumsPublics  =   albumDaoLocal.getAlbumsPublic();
-				for(Album al:albumsPublics) {
-					System.out.println(al.getName());
+				List<Album> albumsPublics     =   albumDaoLocal.getAlbumsPublic();
+				
+				if(u != null) {
+					albumsPublics = albumDaoLocal.getAlbumsPublic(u.getId());
+					List<Album> abl = null;
+					if(u.getUserType().equals("ADMIN")) {
+						abl = albumDaoLocal.getAlbumsPrivate(u.getId());					
+					}
+					else {
+						abl = albumDaoLocal.getAlbumAutorisedToUser(u.getId());												
+					}
+					
+					request.setAttribute("authorisedAlbums", abl);
 				}
+				
 				request.setAttribute("albumsPublics", albumsPublics);
 				this.getServletContext().getRequestDispatcher(PUBLIC_PAGE).forward(request, response);
 				break;
