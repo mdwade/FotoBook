@@ -19,6 +19,7 @@
 	  		<c:when test="${!empty sessionScope.user}">
 	  			<a href="/FotoBook/home" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Mes albums</a>
 	  			<a href="/FotoBook/public" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Albums publics</a>
+	  			<a href="#" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Albums autorisés</a>
 	  			<c:if test="${sessionScope.user.userType == 'ADMIN'}">
 	  				<a href="/FotoBook/users" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Gérer les utilisateurs</a>
 	  			</c:if>

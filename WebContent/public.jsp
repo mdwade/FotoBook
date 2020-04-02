@@ -16,11 +16,14 @@
 	  	<a class="w3-bar-item" style="text-decoration: none"><img src="static/img/music1.png" width="20">otoBook</a>
 	  	<c:if test="${!empty sessionScope.user}">	  	
 	  		<a href="/FotoBook/home" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Mes albums</a>
+	  		<a href="/FotoBook/public" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Albums publiques</a>
+	  		<a href="#" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Albums autorisés</a>
 	  	</c:if>
-	  	<a href="/FotoBook/public" class="w3-bar-item w3-hover-none w3-text-grey w3-hover-text-white" style="text-decoration: none">Albums publiques</a>
+	  	
 	  	<c:if test="${sessionScope.user.userType == 'ADMIN'}">
 			<a href="/FotoBook/users" class="w3-bar-item w3-button w3-hover-none w3-text-grey w3-hover-text-white w3-hide-small">Gérer les utilisateurs</a>
 		</c:if>		
+		
 		<c:if test="${!empty sessionScope.user}"> 
 			<div class="w3-dropdown-hover w3-mobile w3-hide-small w3-right">
 	  			<button class="w3-btn w3-hover-black w3-text-grey w3-hover-text-white">			    	
@@ -91,8 +94,7 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-			</div>
-			
+			</div>			
 	</div>
 </body>
 </html>
