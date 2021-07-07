@@ -1,13 +1,6 @@
 # Projet: développement d'une application Web qui gère des albums photos d’utilisateurs sous JavaEE.
 
 
-## Membres du groupe
-```
-- Mouhamed Diop WADE
-- Alioune Harouna KANOUTE
-```
-
-
 ## Fonctionnalités
 #### Côté admin
 ```
